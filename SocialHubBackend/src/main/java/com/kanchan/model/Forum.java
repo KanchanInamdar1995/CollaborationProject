@@ -1,9 +1,6 @@
 package com.kanchan.model;
 
-
-
 import java.util.Date;
-
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,40 +10,37 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
 @Table
-@SequenceGenerator(name="blogidseq",sequenceName="blogidseq")
-public class Blog 
+@SequenceGenerator(name="forumidseq",sequenceName="forumidseq")
+public class Forum 
 {
 @Id
-@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="blogidseq")
-int blogId;
-String blogName;
-String blogContent;
+@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="forumidseq")
+int forumId;
+String forumName;
+String forumContent;
 @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-MM-yyyy")
 Date createDate;
 String loginname;
-int likes;
-int dislikes;
 String status;
-public int getBlogId() {
-	return blogId;
+public int getForumId() {
+	return forumId;
 }
-public void setBlogId(int blogId) {
-	this.blogId = blogId;
+public void setForumId(int forumId) {
+	this.forumId = forumId;
 }
-public String getBlogName() {
-	return blogName;
+public String getForumName() {
+	return forumName;
 }
-public void setBlogName(String blogName) {
-	this.blogName = blogName;
+public void setForumName(String forumName) {
+	this.forumName = forumName;
 }
-public String getBlogContent() {
-	return blogContent;
+public String getForumContent() {
+	return forumContent;
 }
-public void setBlogContent(String blogContent) {
-	this.blogContent = blogContent;
+public void setForumContent(String forumContent) {
+	this.forumContent = forumContent;
 }
 public Date getCreateDate() {
 	return createDate;
@@ -59,18 +53,6 @@ public String getLoginname() {
 }
 public void setLoginname(String loginname) {
 	this.loginname = loginname;
-}
-public int getLikes() {
-	return likes;
-}
-public void setLikes(int likes) {
-	this.likes = likes;
-}
-public int getDislikes() {
-	return dislikes;
-}
-public void setDislikes(int dislikes) {
-	this.dislikes = dislikes;
 }
 public String getStatus() {
 	return status;
