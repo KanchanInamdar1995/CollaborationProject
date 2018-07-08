@@ -22,6 +22,7 @@ import com.kanchan.model.BlogComment;
 import com.kanchan.model.Forum;
 import com.kanchan.model.ForumComment;
 import com.kanchan.model.Friend;
+import com.kanchan.model.ProfilePicture;
 import com.kanchan.model.UserDetail;
 @Configuration
 @ComponentScan("com.kanchan")
@@ -56,6 +57,7 @@ public class DBConfig
 		sessionFactoryBuilder.addAnnotatedClass(Forum.class);
 		sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
 		sessionFactoryBuilder.addAnnotatedClass(Friend.class);
+		sessionFactoryBuilder.addAnnotatedClass(ProfilePicture.class);
 		
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
 		System.out.println("-------SessionFactory Object------");

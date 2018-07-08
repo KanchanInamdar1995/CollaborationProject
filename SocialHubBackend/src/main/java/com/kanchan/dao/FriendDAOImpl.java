@@ -1,5 +1,6 @@
 package com.kanchan.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -19,8 +20,12 @@ public class FriendDAOImpl implements FriendDAO
 	SessionFactory sessionFactory;
 	public List<Friend> showFriendList(String loginname)
 	{
-		
-		return null;
+		Session session=sessionFactory.openSession();
+		Query query1=session.createQuery("from Friend where (friendloginname=:flogin or loginname=:mylogin) and status='A'");
+		query1.setParameter("flogin",loginname);
+		query1.setParameter("mylogin",loginname);
+		List<Friend> friendList=(List<Friend>)query1.list();
+		return friendList;
 	}
 
 	public List<Friend> showPendingFriendRequest(String loginname) 
@@ -32,9 +37,26 @@ public class FriendDAOImpl implements FriendDAO
 		return pendingFriendRequest;
 	}
 
-	public List<UserDetail> showSuggestedFriend(String loginname) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserDetail> showSuggestedFriend(String loginname) 
+	{
+		String str="select loginname from UserDetail where ";
+		str=str+"(loginname not in(select friendloginname from Friend where loginname='"+loginname+"'and status='A')";
+		str=str+" and ";
+		str=str+"loginname not in(select loginname from Friend where friendloginname='"+loginname+"'and status='A'))";
+		str=str+" and ";
+		str=str+" loginname!='"+loginname+"'";
+		Session session=sessionFactory.openSession();
+		Query query= session.createSQLQuery(str);
+		List <String> username=(List<String>)query.list();
+		ArrayList<UserDetail> suggestedFriends=new ArrayList<UserDetail>();
+		int i=0;
+		while(i<username.size())
+		{
+			UserDetail userDetail=(UserDetail)session.get(UserDetail.class,username.get(i));
+			suggestedFriends.add(userDetail);
+			i++;
+		}
+		return suggestedFriends;
 	}
 
 	public boolean sendFriendRequest(Friend friend)

@@ -10,6 +10,8 @@
 <script src="RouteConfig.js"></script>
 <script src="c_user/UserController.js"></script>
 <script src="c_blog/BlogController.js"></script>
+<script src="c_forum/ForumController.js"></script>
+<script src="c_friend/FriendController.js"></script>
 </head>
 <body ng-app="MyModule">
 <nav class="navbar navbar-inverse">
@@ -19,8 +21,9 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="#/login">Login</a></li>
-      <li><a href="#/register">Register</a></li>
+      <li ng-show="currentUser==undefined"><a href="#/login">Login</a></li>
+      <li ng-show="currentUser==undefined"><a href="#/register">Register</a></li>
+      <li ng-hide="currentUser==undefined"><a href="#/profilePic">Profile Update</a>
       <li><a href="#/contactus">Contact Us</a></li>
       <li><a href="#/aboutus">About Us</a></li>
       <li class="dropdown">
@@ -31,8 +34,25 @@
       <li><a href="#/adminBlog">Manage Blog</a></li>
     </ul>
     </li>
+     <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum<span class="Caret"></span></a>
+      <ul class="dropdown-menu">
+      <li><a href="#/addForum">Add Forum</a></li>
+      <li><a href="#/showForum">Show Forum</a></li>
+      <li><a href="#/adminForum">Manage Forum</a></li>
+    </ul>
+    </li>
+    <li ng-hide="currentUser==undefined" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Friend<span class="Caret"></span></a>
+      <ul class="dropdown-menu">
+      <li><a href="#/showFriendList">Show Friend List</a></li>
+      <li><a href="#/showPendingFriendRequestList">Show Pending Friend Requests</a></li>
+      <li><a href="#/showSuggestedFriendList">Suggested Friend List</a></li>
+    </ul>
+    </li>
     </ul>
     <div class="nav navbar-nav navbar-right" ng-hide="currentUser==undefined">
+    <img src="http://localhost:1567/SocialHubMiddleware/getImage/{{currentUser.loginname}}" style="width:80px;height:50px;padding:0;margin:0;" alt="user profile picture">
     <font color="white" face="calibri" size="2">Welcome {{currentUser.username}} Logout</font>
     </div>
   </div>

@@ -43,7 +43,7 @@ public class ForumRestController
 	}
 	
 	@PostMapping(value="/addForum")
-	public ResponseEntity<String> insertBlog(@RequestBody Forum forum)
+	public ResponseEntity<String> insertForum(@RequestBody Forum forum)
 	{	
 		forum.setCreateDate(new java.util.Date());
 		forum.setStatus("NA");
