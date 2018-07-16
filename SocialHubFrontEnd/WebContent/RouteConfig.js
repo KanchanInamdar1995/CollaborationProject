@@ -1,4 +1,4 @@
-var myModule=angular.module("MyModule",['ngRoute']);
+var myModule=angular.module("MyModule",['ngRoute','ngCookies']);
 
 myModule.config(function ($routeProvider)
 		{
@@ -21,6 +21,15 @@ myModule.config(function ($routeProvider)
 					 .when("/profilePic",{templateUrl:"c_user/ProfilePictureUpdate.html"})
 					 .when("/showFriendList",{templateUrl:"c_friend/ShowFriendList.html"})
 					 .when("/showPendingFriendRequestList",{templateUrl:"c_friend/ShowPendingFriendRequestList.html"})
-					 .when("/showSuggestedFriendList",{templateUrl:"c_friend/ShowSuggestedFriendList.html"});
-
+					 .when("/showSuggestedFriendList",{templateUrl:"c_friend/ShowSuggestedFriendList.html"})
+					 .when("/chat",{templateUrl:"c_chat/Chat.html"});
 		});
+myModule.run(function($rootScope,$cookieStore)
+		{
+		console.log('I am in run function');
+		console.log($rootScope.currentUser);
+		if($rootScope.currentUser==undefined)
+			{
+			$rootScope.currentUser=$cookieStore.get('userDetails');
+			}
+});

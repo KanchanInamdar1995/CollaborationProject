@@ -16,5 +16,13 @@ public String getMessage() {
 public void setMessage(String message) {
 	this.message = message;
 }
-
+public Message()
+{
+	
+}
+public Message(String message,int id)
+{
+	this.message=message;
+	this.id=id;
+}
 }

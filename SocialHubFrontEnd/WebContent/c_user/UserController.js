@@ -1,4 +1,4 @@
-myModule.controller("UserController",function($scope,$http,$rootScope,$location)
+myModule.controller("UserController",function($scope,$http,$rootScope,$location,$cookieStore)
 		{
 			
 			alert("Hello");
@@ -13,6 +13,7 @@ myModule.controller("UserController",function($scope,$http,$rootScope,$location)
 				{
 					$scope.user=response.data;
 					$rootScope.currentUser=response.data;
+					$cookieStore.put('userDetails',response.data);
 					console.log('User is Correct');
 					$location.path("/UserHome");
 				});

@@ -126,7 +126,7 @@ public class ForumRestController
 	}
 	
 	@GetMapping("/getAllForumComment/{forumid}")
-	public ResponseEntity<List<ForumComment>> getAllForumComments(@PathVariable("forumid")int forumid)
+	public ResponseEntity<List<ForumComment>> getAllComments(@PathVariable("forumid")int forumid)
 	{
 		List<ForumComment> listForumComments=forumCommentDAO.getAllComments(forumid);
 		

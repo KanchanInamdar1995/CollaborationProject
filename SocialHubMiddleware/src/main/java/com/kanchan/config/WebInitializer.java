@@ -1,10 +1,20 @@
 package com.kanchan.config;
 
+import java.nio.charset.StandardCharsets;
+
+import javax.servlet.Filter;
+import javax.servlet.ServletRegistration;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
 {
-
+	protected void Customizeregistration(ServletRegistration.Dynamic registration)
+	{
+		registration.setInitParameter("dispatchOptionsRequest","true");
+		registration.setAsyncSupported(true);
+	}
 	@Override
 	protected Class<?>[] getRootConfigClasses() 
 	{
@@ -25,5 +35,11 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		
 		return new String[] {"/"};
 	}
-
+	
+	protected Filter[] getServletFilter()
+	{
+		CharacterEncodingFilter encodingFilter=new CharacterEncodingFilter();
+		encodingFilter.setEncoding(StandardCharsets.UTF_8.name());
+		return new Filter[] {encodingFilter};
+	}
 }

@@ -9,7 +9,7 @@ myModule.controller("ForumController",function($scope,$http,$rootScope,$location
 			
 			$rootScope.forumInfo;
 			
-			$scope.forumComment={'commentId':0,'forumId':0,'discussionText':'','loginname':'','discussionDate':''};
+			$scope.forumComment={'commentId':0,'forumId':'','discussionText':'','loginname':'','discussionDate':''};
 			
 			$scope.addForum=function()
 			{	console.log("Add fn");
