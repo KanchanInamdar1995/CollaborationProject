@@ -49,7 +49,7 @@ myModule.controller("ForumController",function($scope,$http,$rootScope,$location
 					console.log('Rejecting the Forum');
 				});
 			}
-			$rootScope.forumComment=function(forum)
+			$rootScope.forumComments=function(forum)
 			{
 				console.log('I am in Forum Comment Controller');
 				$http.get('http://localhost:1567/SocialHubMiddleware/getAllForumComment/'+forum.forumId)

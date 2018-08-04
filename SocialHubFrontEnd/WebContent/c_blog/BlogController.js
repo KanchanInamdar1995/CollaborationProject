@@ -1,5 +1,7 @@
 myModule.controller("BlogController",function($scope,$http,$rootScope,$location)
 		{
+	console.log('JobController');
+
 			$scope.blog={'blogId':0,'blogName':'','blogContent':'','createDate':'','loginname':'','likes':'','dislikes':'','status':''};
 			
 			$scope.blogData;

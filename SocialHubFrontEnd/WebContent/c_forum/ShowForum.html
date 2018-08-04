@@ -1,9 +1,17 @@
 <div class="container" ng-controller="ForumController">
-<div ng-repeat="forum in forumData">
-<button ng-show="forum.status=='A'" data-target="#{{forum.forumId}}" class="btn btn-info" data-toggle="collapse">{{forum.forumName}}</button>
-<button ng-show="forum.status=='A' && currentUser!=undefined" class="btn btn-info" ng-click="forumComment(forum)">Forum Comment</button>
+<div class="row" ng-repeat="forum in forumData" ng-show="forum.status=='A'">
+<div class="col s12 m6">
+<div class="card orange">
+<div class="card-content white-text">
+<button ng-show="forum.status=='A'" data-target="#{{forum.forumId}}" class="btn btn-primary active" data-toggle="collapse">{{forum.forumName}}</button>
+<button ng-show="forum.status=='A' && currentUser!=undefined" class="btn btn-primary active" ng-click="forumComments(forum)">Forum Comment</button>
 	<div ng-show="forum.status=='A'" id="{{forum.forumId}}" class="collapse">
+	<font size="3">
 	{{forum.forumContent}}
+	</font>
 	</div>
+</div>
+</div>
+</div>
 </div>
 </div>

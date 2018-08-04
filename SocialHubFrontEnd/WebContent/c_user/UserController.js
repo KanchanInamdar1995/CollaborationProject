@@ -1,7 +1,7 @@
-myModule.controller("UserController",function($scope,$http,$rootScope,$location,$cookieStore)
+myModule.controller("UserController",function($scope,$http,$rootScope,$location,$cookieStore,$route)
 		{
 			
-			alert("Hello");
+			
 			$scope.user={'loginname':'','password':'','username':'','emailid':'','mobile':'','role':'','address':''};
 			
 			$scope.checklogin=function()
@@ -34,7 +34,16 @@ myModule.controller("UserController",function($scope,$http,$rootScope,$location,
 				});
 				
 			}
-	
+			
+			$scope.logout = function()
+			{
+				console.log("Logging Out");
+				alert("Logged Out Successfully")
+				$location.path("/login");
+				$rootScope.currentUser = undefined;
+				$window.location.reload();
+		}
+		
 	});
 
 

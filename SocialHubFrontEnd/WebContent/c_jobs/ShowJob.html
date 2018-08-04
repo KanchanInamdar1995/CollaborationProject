@@ -1,0 +1,29 @@
+<br><div style="border:1px solid black;padding:0;background-color:white;" class="container" ng-Controller="c_jobsController">
+
+<p align="center"><h1 style="background-color:cyan;padding:15px;text-align:center;margin-top:-16px;">Featured Jobs</h1></p>
+<div align="center" ng-repeat="job in jobData">
+  <div class="card" style="width:80%;text-align:left;border:1px solid black;">
+  <div class="card-header">
+    <div style="font-size:20px;font-weight:bold;float:left;">{{job.jobDesignation}}</div>
+   
+  </div>
+    <br>
+    <div class="card-body">
+    
+    	<p></p>
+    	<p><b>Job Description: </b>{{job.jobDescription}}</p>
+    	<p><b>Salary: </b>{{job.salary}}</p>    	
+    	<p><b>Company: </b>{{job.company}}</p>
+    	
+    </div> 
+    <div class="card-footer">
+    	
+        <button type="button" class="btn btn-primary" ng-show="currentUser.role=='ROLE_USER' " ng-click="applyJobClicked(job)">Apply</button>
+  		
+        
+    </div>
+ 	</div>
+  <br><br>
+  </div>
+
+</div>

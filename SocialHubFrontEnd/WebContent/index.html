@@ -1,75 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Angular -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ICONS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+<!-- Bootstrap -->    
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="RouteConfig.js"></script>
+
+<!-- Project Controllers -->
+<script src="RouteConfig.js" type="text/javascript"></script>
 <script src="c_user/UserController.js"></script>
 <script src="c_blog/BlogController.js"></script>
 <script src="c_forum/ForumController.js"></script>
 <script src="c_friend/FriendController.js"></script>
 <script src="c_chat/ChatController.js"></script>
 <script src="c_chat/ChatService.js"></script>
+<script src="c_jobs/c_jobsController.js" type="text/javascript"></script>
 
+<!-- Chat -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
 
 </head>
 <body ng-app="MyModule">
+
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">SocialHub</a>
-    </div>
+	<div class="container-fluid">
+	
+    	<div class="navbar-header">
+      	<a class="navbar-brand" href="#">SocialHub</a>
+    	</div>
+    	
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li ng-show="currentUser==undefined"><a href="#/login">Login</a></li>
-      <li ng-show="currentUser==undefined"><a href="#/register">Register</a></li>
-      <li ng-hide="currentUser==undefined"><a href="#/profilePic">Profile Update</a>
-      <li><a href="#/contactus">Contact Us</a></li>
-      <li><a href="#/aboutus">About Us</a></li>
-      <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog<span class="Caret"></span></a>
-      <ul class="dropdown-menu">
-      <li><a href="#/addBlog">Add Blog</a></li>
-      <li><a href="#/showBlog">Show Blog</a></li>
-      <li><a href="#/adminBlog">Manage Blog</a></li>
-    </ul>
-    </li>
-     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum<span class="Caret"></span></a>
-      <ul class="dropdown-menu">
-      <li><a href="#/addForum">Add Forum</a></li>
-      <li><a href="#/showForum">Show Forum</a></li>
-      <li><a href="#/adminForum">Manage Forum</a></li>
-    </ul>
-    </li>
-    <li ng-hide="currentUser==undefined" class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Friend<span class="Caret"></span></a>
-      <ul class="dropdown-menu">
-      <li><a href="#/showFriendList">Show Friend List</a></li>
-      <li><a href="#/showPendingFriendRequestList">Show Pending Friend Requests</a></li>
-      <li><a href="#/showSuggestedFriendList">Suggested Friend List</a></li>
-    </ul>
-    </li>
-    <li><a ng-hide="currentUser==undefined" href="#/chat">Chat</a></li>
-    </ul>
+     	<li><a href="#/UserHome"><font size="3">Home</font></a></li>
+     	
+      	<li ng-show="currentUser==undefined"><a href="#/login"><font size="3">Login</font></a></li>
+      	
+      	<li ng-show="currentUser==undefined"><a href="#/register"><font size="3">Register</font></a></li>
+      	
+      	<li ng-hide="currentUser==undefined"><a href="#/profilePic"><font size="3">Profile Update</font></a>
+      	
+      	<li><a href="#/aboutus"><font size="3">About Us</font></a></li>
+      	
+      	<li class="dropdown">
+      	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><font size="3">Blog</font><span class="Caret"></span></a>
+      		<ul class="dropdown-menu">
+      			<li ng-show="currentUser.role == 'ROLE_USER'"><a href="#/addBlog"><font size="3">Add Blog</font></a></li>
+     			<li><a href="#/showBlog"><font size="3">Show Blog</font></a></li>
+      			<li ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#/adminBlog"><font size="3">Manage Blog</font></a></li>
+    		</ul>
+    	</li>
+    	
+     	<li class="dropdown">
+     	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><font size="3">Forum</font><span class="Caret"></span></a>
+      		<ul class="dropdown-menu">
+      			<li ng-show="currentUser.role == 'ROLE_USER'"><a href="#/addForum"><font size="3">Add Forum</font></a></li>
+      			<li><a href="#/showForum"><font size="3">Show Forum</font></a></li>
+      			<li ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#/adminForum"><font size="3">Manage Forum</font></a></li>
+    		</ul>
+    	</li>
+    	
+    	<li ng-hide="currentUser==undefined" class="dropdown">
+      	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><font size="3">Friend</font><span class="Caret"></span></a>
+      		<ul class="dropdown-menu">
+      			<li><a href="#/showFriendList"><font size="3">Show Friend List</font></a></li>
+      			<li><a href="#/showPendingFriendRequestList"><font size="3">Show Pending Friend Requests</font></a></li>
+      			<li><a href="#/showSuggestedFriendList"><font size="3">Suggested Friend List</font></a></li>
+   			 </ul>
+    	</li>
+  
+		<li ng-hide="currentUser==undefined" class="dropdown">
+    	 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><font size="3">Jobs</font><span class="Caret"></span></a>
+    		<ul class="dropdown-menu">
+        		<li ng-show="currentUser.role == 'ROLE_USER'"><a href="#/appliedjobs"><font size="3">My Applications</font></a></li>
+        		<li><a href="#/showJob"><font size="3">Apply Jobs</font></a></li>
+        		<li ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#/addJob"><font size="3">Post Job</font></a></li>
+        		<li ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#/allApplications"><font size="3">All Applications</font></a></li>
+			</ul>
+		</li>
+     		
+		<li><a ng-hide="currentUser==undefined" href="#/chat"><font size="3">Chat</font></a></li>
+   
+	</ul>
+
     <div class="nav navbar-nav navbar-right" ng-hide="currentUser==undefined">
-    <img src="http://localhost:1567/SocialHubMiddleware/getImage/{{currentUser.loginname}}" style="width:80px;height:50px;padding:0;margin:0;" alt="user profile picture">
-    <font color="white" face="calibri" size="2">Welcome {{currentUser.username}} Logout</font>
+    	<img src="http://localhost:1567/SocialHubMiddleware/getImage/{{currentUser.loginname}}" style="width:80px;height:50px;padding:0;margin:0;" alt="user profile picture">
+    	<font color="white" face="calibri" size="2">Welcome {{currentUser.username}} 
+    	<a href="#/logout"><font color="blue">Logout</font></a></font>
     </div>
   </div>
 </nav>
 
+<center><h1><font color="red" face="Monotype Corsiva"><i>SocioNet</i></font></h1></center>
+
 <div class="container">
-<div ng-view></div>
+	<div ng-view></div>
 </div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">SocioNet</h5>
+                <p class="grey-text text-lighten-4">A platform to explore various people and connect with others thoughts and to grow as a person.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#/addBlog">Add Blog</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#/addForum">Add Forum</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#/chat">Chat</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#jobs">Apply Jobs</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2018 Copyright Text
+           </div>
+          </div>
+        </footer>
+     
 </body>
 </html>

@@ -17,11 +17,15 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.kanchan.model.ApplyJob;
 import com.kanchan.model.Blog;
 import com.kanchan.model.BlogComment;
 import com.kanchan.model.Forum;
 import com.kanchan.model.ForumComment;
 import com.kanchan.model.Friend;
+import com.kanchan.model.Job;
+import com.kanchan.model.JobApplication;
+import com.kanchan.model.JobDetail;
 import com.kanchan.model.ProfilePicture;
 import com.kanchan.model.UserDetail;
 @Configuration
@@ -58,6 +62,9 @@ public class DBConfig
 		sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
 		sessionFactoryBuilder.addAnnotatedClass(Friend.class);
 		sessionFactoryBuilder.addAnnotatedClass(ProfilePicture.class);
+		sessionFactoryBuilder.addAnnotatedClass(Job.class);
+		sessionFactoryBuilder.addAnnotatedClass(ApplyJob.class);
+		
 		
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
 		System.out.println("-------SessionFactory Object------");

@@ -1,0 +1,51 @@
+<div class="container" ng-Controller="c_jobsController">
+<br>	
+	<div align="center">
+	<div class="card" style="width:400px;min-height:630px;padding:0px;border:1px solid black;">
+ 	 <h4 style="background-color:powderblue;padding:10px;" align="center" class="card-title"><b>Post Job</b></h4><br>
+    	<p align="center" style="padding:0;"><img class="card-img-top" src="b4gjobs.png" alt="Card image" style="width:150px;height:100px;"></p>
+    	<div style="text-align:left;" class="card-body">
+    
+   			<form>
+		
+			<div class="row">
+				<div class="col-sm-6 form-group">
+					<label>Job Designation</label>
+						<input type="text" name="designation" ng-model="job.jobDesignation"  placeholder="Enter Jot title Here" class="form-control" required>
+				</div>
+				
+				<div class="col-sm-6 form-group">
+					<label>Job Salary</label>
+						<input type="text" name="salary" ng-model="job.salary" placeholder="Enter Job Salary" class="form-control" required>
+				</div>		
+			</div>					
+			
+			<div class="form-group">
+					<label>Job Description</label>
+						<textarea name="roles" ng-model="job.jobDescription" placeholder="Enter Description Here" rows="3" class="form-control" required></textarea>
+			</div>
+						
+			<div class="form-group">
+				<label>Company</label>
+					<input type="text" name="company" ng-model="job.company" placeholder="Enter name of company" class="form-control" required>
+			</div>		
+					
+			<div class="form-group">
+				<label>Job Location</label>
+					<input type="text" name="location" ng-model="job.location" placeholder="Enter Location Here" class="form-control" required>
+			</div>	
+	
+			
+			<button type="button" ng-click="addJob()" class="btn btn-lg btn-primary">Post Job</button>					
+		
+	</form> 
+	
+		</div>
+	</div>
+</div>
+	
+	
+	
+	
+	
+	</div>

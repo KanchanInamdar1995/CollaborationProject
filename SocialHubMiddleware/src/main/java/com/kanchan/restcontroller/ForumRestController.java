@@ -2,6 +2,8 @@ package com.kanchan.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import com.kanchan.model.Blog;
 import com.kanchan.model.BlogComment;
 import com.kanchan.model.Forum;
 import com.kanchan.model.ForumComment;
+import com.kanchan.model.UserDetail;
 
 @RestController
 public class ForumRestController
@@ -26,6 +29,9 @@ public class ForumRestController
 	
 	@Autowired
 	ForumCommentDAO forumCommentDAO;
+	
+	@Autowired
+	HttpSession session;
 	
 	@GetMapping("/listForums")
 	public ResponseEntity<List<Forum>> listForums()
@@ -45,6 +51,8 @@ public class ForumRestController
 	@PostMapping(value="/addForum")
 	public ResponseEntity<String> insertForum(@RequestBody Forum forum)
 	{	
+		UserDetail userDetail=(UserDetail)session.getAttribute("userDetail");
+		forum.setLoginname(userDetail.getLoginname());
 		forum.setCreateDate(new java.util.Date());
 		forum.setStatus("NA");
 		if(forumDAO.addForum(forum))

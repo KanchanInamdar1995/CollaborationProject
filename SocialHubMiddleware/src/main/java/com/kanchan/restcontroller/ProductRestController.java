@@ -3,7 +3,7 @@ package com.kanchan.restcontroller;
 import java.util.List;
 
 
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kanchan.dao.BlogCommentDAO;
 import com.kanchan.dao.BlogDAO;
+import com.kanchan.dao.UserDAO;
 import com.kanchan.model.Blog;
 import com.kanchan.model.BlogComment;
+import com.kanchan.model.UserDetail;
+
 
 @RestController
 public class ProductRestController
@@ -27,6 +30,12 @@ public class ProductRestController
 	
 	@Autowired
 	BlogCommentDAO blogCommentDAO;
+	
+	@Autowired
+	private UserDAO userDAO;
+	
+	@Autowired
+	HttpSession session;
 	
 	@GetMapping("/listBlogs")
 	public ResponseEntity<List<Blog>> listBlogs()
@@ -45,7 +54,9 @@ public class ProductRestController
 	
 	@PostMapping(value="/addBlog")
 	public ResponseEntity<String> insertBlog(@RequestBody Blog blog)
-	{	
+
+	{	UserDetail userDetail=(UserDetail)session.getAttribute("userDetail");
+		blog.setLoginname(userDetail.getLoginname());
 		blog.setCreateDate(new java.util.Date());
 		blog.setDislikes(0);
 		blog.setLikes(0);
